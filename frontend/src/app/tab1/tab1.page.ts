@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
   items = [
     {
       itemName: 'i7-8700k',
@@ -31,24 +31,29 @@ export class Tab1Page {
   ];
   isItemAvailable = false;
 
-  constructor() {}
+  constructor(private searchSe) { }
 
   ngOnInit() {
-
+    console.log('welcome!');
   }
- 
- getItems(ev: any) {
-  // Reset items back to all of the items 
-  // set val to the value of the searchbar
-  const val = ev.target.value;
-  // if the value is an empty string don't filter the items
-  if (val && val.trim() !== '') {
+
+  private _filterItems(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.items.filter(item => item.itemName.toLowerCase().includes(filterValue));
+  }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() !== '') {
       this.isItemAvailable = true;
       this.items = this.items.filter((item) => {
-      return (item.itemName.toLowerCase().indexOf(val.toLowerCase()) > -1);
-  });
-  }
+        return (item.itemName.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    }
 
-}
+  }
 }
 
