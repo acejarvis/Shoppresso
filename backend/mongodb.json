@@ -1,0 +1,23 @@
+{
+    "users": [
+        {
+            "username": "user1",
+            "password": "123456",
+            "email": "dsadaad@gmail.com",
+            "address": [
+                {
+                    "tag": "home",
+                    "address": "nice"
+                },
+                {
+                    "tag": "work",
+                    "address": "good"
+                }
+            ]
+        }
+    ],
+    "items": [],
+    "shoppingLists": [],
+    "currentId": 0,
+    "currentUser": "user1"
+}
