@@ -13,5 +13,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-searchbar animated type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list *ngIf="isItemAvailable">
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>
+        <ion-card>
+          <ion-label>{{item.itemName}}</ion-label>
+            <ion-label>{{item.store}}</ion-label>
+
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
