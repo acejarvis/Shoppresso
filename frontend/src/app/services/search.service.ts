@@ -12,7 +12,9 @@ export class SearchService {
     const body = {
       Name: name
     };
-    return this.http.dashPost<Comment[]>('comment/log', JSON.stringify(body));
+    return this.http.dashPost<Comment[]>('search', JSON.stringify(body));
   }
+
+  
 
 }
