@@ -22,7 +22,7 @@ export class HttpclientService {
 
 
   getUrl() {
-    const searchUrl = 'localhost:3000/';
+    const searchUrl = 'http://localhost:8081/';
     return searchUrl;
   }
 }
