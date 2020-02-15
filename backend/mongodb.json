@@ -1,17 +1,17 @@
 {
     "users": [
         {
-            "username": "user1",
+            "username": "user2",
             "password": "123456",
-            "email": "dsadaad@gmail.com",
+            "email": "peterliu123422@gmail.com",
             "address": [
                 {
                     "tag": "home",
-                    "address": "nice"
+                    "address": "20 baffin ct, RichMound Hill"
                 },
                 {
                     "tag": "work",
-                    "address": "good"
+                    "address": "8200 Warden Ave, Markham"
                 }
             ]
         }
