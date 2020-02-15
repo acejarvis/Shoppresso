@@ -21,18 +21,19 @@ app.post('/user/login', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
-   let verify = "noGG";
-   for (user in db.users) {
-      if (user.username == req.body.username || user.email == req.body.username)
-         if (user.password == req.body.password) {
-            verify = "GG"
-            db.currentUser = user.username;
+   let verify = "User/Email doesn't exist";
+   for (let i = 0; i < db.users.length; i++) {
+      if (db.users[i].username == req.body.username || db.users[i].email == req.body.email) {
+         if (db.users[i].password == req.body.password) {
+            verify = "Login Succeed"
+            db.currentUser = db.users[i].username;
+            break;
+         } else {
+            verify = "Wrong Password"
             break;
          }
-         else {
-            verify = "notGG"
-            break;
-         }
+
+      }
    }
    res.send(verify);
    fs.writeFileSync("mongodb.json", JSON.stringify(db));
@@ -81,10 +82,10 @@ app.post('/user/verifyUsername', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
-   let verify = "noGG";
-   for (user in db.users) {
-      if (user.username == req.body.username)
-         verify = "hadGG"
+   let verify = "Valid";
+   for (let i = 0; i < db.users.length; i++) {
+      if (db.users[i].username == req.body.username)
+         verify = "Invalid";
    }
    res.send(verify);
    res.end();
@@ -99,10 +100,10 @@ app.post('/user/verifyEmail', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
-   let verify = "noGG";
-   for (user in db.users) {
-      if (user.email == req.body.email)
-         verify = "hadGG"
+   let verify = "Valid";
+   for (let i = 0; i < db.users.length; i++) {
+      if (db.users[i].email == req.body.email)
+         verify = "Invalid"
    }
    res.send(verify);
    res.end();
@@ -117,12 +118,12 @@ app.post('/user/newUser', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
-   let verify = "noGG";
-   for (user in db.users) {
-      if (user.username == req.body.username || user.email == req.body.email)
-         verify = "hadGG"
+   let verify = "Valid";
+   for (let i = 0; i < db.users.length; i++) {
+      if (db.users[i].username == req.body.username || db.users[i].email == req.body.email)
+         verify = "Invalid"
    }
-   if (verify == "hadGG")
+   if (verify == "Invalid")
       res.send("Username/Email has been taken.");
    else {
       db.users.push({
@@ -155,12 +156,12 @@ app.post('/user/changeAddress', function (req, res) {
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
    if (req.query.tag == "home") {
-      db.users.find(({ username }) => username === db.currentUser).homeAddress = req.body.homeAddress
+      db.users.find(({ username }) => username === db.currentUser).address[0].address = req.body.homeAddress
       fs.writeFileSync("mongodb.json", JSON.stringify(db));
       res.end();
    }
    if (req.query.tag == "work") {
-      db.users.find(({ username }) => username === db.currentUser).workAddress = req.body.workAddress
+      db.users.find(({ username }) => username === db.currentUser).address[1].address = req.body.workAddress
       fs.writeFileSync("mongodb.json", JSON.stringify(db));
       res.end();
    }
@@ -175,11 +176,11 @@ app.delete('/user/deleteUser', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
-   let verify = "noGG";
-   for (user in db.users) {
-      if (user.username == req.body.username || user.email == req.body.email) {
-         verify = "GGgone";
-         delete db.users.find(({ username }) => username === req.body.username)
+   let verify = "User Not Found";
+   for (let i = 0; i < db.users.length; i++) {
+      if (db.users[i].username == req.body.username || db.users[i].email == req.body.email) {
+         verify = "User Deleted";
+         db.users.splice(i, 1);
       }
    }
    res.send(verify);
@@ -248,8 +249,8 @@ app.post('/shoppingList', function (req, res) {
    if (req.query.cmd == "add") {
       let list = Date.parse(req.body.date).toDateString();
       let found = false;
-      for (shoppingList in db.shoppingLists) {
-         if (shoppingList.listId == list) {
+      for (let i = 0; i < db.shoppingLists.length; i++) {
+         if (db.shoppingLists[i].listId == list) {
             db.shoppingLists.find(({ listId }) => listId === list).items.push(req.query.itemId);
             found = true;
             break;
@@ -268,9 +269,9 @@ app.post('/shoppingList', function (req, res) {
    // clear shopping list
    if (req.query.cmd == "clear") {
       let list = Date.parse(req.body.date).toDateString();
-      for (shoppingList in db.shoppingLists) {
-         if (shoppingList.listId == list) {
-            delete db.shoppingLists.find(({ listId }) => listId === list);
+      for (let i = 0; i < db.shoppingLists.length; i++) {
+         if (db.shoppingLists[i].listId == list) {
+            db.shoppingLists.splice(i, 1);
             break;
          }
       }
@@ -282,8 +283,8 @@ app.post('/shoppingList', function (req, res) {
    if (req.query.cmd == "delete") {
       let list = Date.parse(req.body.date).toDateString();
       let found = false;
-      for (shoppingList in db.shoppingLists) {
-         if (shoppingList.listId == list) {
+      for (let i = 0; i < db.shoppingLists.length; i++) {
+         if (db.shoppingLists[i].listId == list) {
             db.shoppingLists.find(({ listId }) => listId === list).items.delete(req.query.index);
             found = true;
             res.write("deleted");
@@ -312,11 +313,11 @@ app.get('/shoppingList', function (req, res) {
    if (req.query.cmd == "getShoppingList") {
       let list = Date.parse(req.body.date).toDateString();
       let shpLt = []
-      for (shoppingList in db.shoppingLists) {
-         if (shoppingList.listId == list) {
+      for (let i = 0; i < db.shoppingLists.length; i++) {
+         if (db.shoppingLists[i].listId == list) {
             let itemList = db.shoppingLists.find(({ listId }) => listId === list).items;
-            for (item in itemList) {
-               shpLt.push(db.shoppingLists.find(({ itemId }) => itemId === item))
+            for (let i = 0; i < itemList.length; i++) {
+               shpLt.push(db.shoppingLists.find(({ itemId }) => itemId === itemList[i]))
             }
             break;
          }
