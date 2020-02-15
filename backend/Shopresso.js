@@ -21,7 +21,7 @@ app.post('/user/login', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
-   let verify = "User/Email doesn't exist";
+   let verify = "not exist";
    for (let i = 0; i < db.users.length; i++) {
       if (db.users[i].username == req.body.username || db.users[i].email == req.body.email) {
          if (db.users[i].password == req.body.password) {
@@ -35,7 +35,7 @@ app.post('/user/login', function (req, res) {
 
       }
    }
-   res.send(verify);
+   res.json(verify);
    fs.writeFileSync("mongodb.json", JSON.stringify(db));
    res.end();
 })
@@ -64,9 +64,9 @@ app.get('/user/getCurrentUser', function (req, res) {
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
    if (db.currentUser == "JarvisIsGay")
-      res.write("JarvisIsGay");
+      res.json("JarvisIsGay");
    else {
-      res.write(JSON.stringify(db.users.find(({ username }) => username === db.currentUser)))
+      res.json(JSON.stringify(db.users.find(({ username }) => username === db.currentUser)))
    }
    res.end();
 })
@@ -287,12 +287,12 @@ app.post('/shoppingList', function (req, res) {
          if (db.shoppingLists[i].listId == list) {
             db.shoppingLists.find(({ listId }) => listId === list).items.delete(req.query.index);
             found = true;
-            res.write("deleted");
+            res.json("deleted");
             break;
          }
       }
       if (!found) {
-         res.write("JarvisIsGay")
+         res.json("JarvisIsGay")
       }
       fs.writeFileSync("mongodb.json", JSON.stringify(db));
       res.end();
@@ -322,7 +322,7 @@ app.get('/shoppingList', function (req, res) {
             break;
          }
       }
-      res.write(shpLt);
+      res.json(shpLt);
       res.end();
    }
 })

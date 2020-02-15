@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-input class="User_id" color="primary" placeholder="Username"></ion-input>
+  <ion-input class="User_id" color="primary" placeholder="Username" [ngModel]=""></ion-input>
   <ion-input type="password" class="password" color="primary" placeholder="Password"></ion-input>
   <ion-button class="login" expand="block" (click)="login()">login</ion-button>
   <ion-progress-bar type="indeterminate" *ngIf="isLogined"></ion-progress-bar>
