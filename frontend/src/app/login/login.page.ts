@@ -10,7 +10,7 @@ export class LoginPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  } 
+  }
   login() {
     this.isLogined = true;
 }
