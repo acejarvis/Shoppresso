@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-tab1',
@@ -29,9 +30,11 @@ export class Tab1Page implements OnInit {
       image: 'src/assets/items/i7-8700k.png'
     }
   ];
+
+  itemList: any[];
   isItemAvailable = false;
 
-  constructor(private searchSe) { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
     console.log('welcome!');

@@ -8,13 +8,14 @@ export class SearchService {
 
   constructor(private http: HttpclientService) { }
 
-  searchItems(name: string): Observable<any[]> {
+  searchItems(value: string): Observable<any[]> {
     const body = {
-      Name: name
+      name: value
     };
-    return this.http.dashPost<Comment[]>('search', JSON.stringify(body));
+    return this.http.dashPost<any[]>('search/', JSON.stringify(body));
   }
 
-  
-
+  getAll(): Observable<any[]> {
+    return this.http.dashGet<any[]>('getlist/');
+  }
 }
