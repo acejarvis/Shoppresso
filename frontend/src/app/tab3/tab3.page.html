@@ -1,17 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Map
-    </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Map</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <!-- <div #mapContainer id="map"></div> -->
+
+  <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+    <ion-item>
+      <ion-label position="floating">Source</ion-label>
+      <ion-input formControlName="source"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Destination</ion-label>
+      <ion-input formControlName="destination"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="directionForm.invalid">Get Direction</ion-button>
+  </form>
+  <div #mapContainer id="map"></div>
 </ion-content>

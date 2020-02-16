@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tab3',
@@ -8,38 +9,42 @@ import { SearchService } from '../services/search.service';
 })
 export class Tab3Page implements AfterViewInit {
 
-  itemsList: any[];
-
-  @ViewChild('mapContainer', { static: false }) gmap: ElementRef;
-
-  // map-configuration
-  map: google.maps.Map;
-  lat = 40.730610;
-  lng = -73.935242;
-  coordinates = new google.maps.LatLng(this.lat, this.lng);
-  mapOptions: google.maps.MapOptions = {
-    center: this.coordinates,
-    zoom: 8,
-  };
-
-
-  marker = new google.maps.Marker({
-    position: this.coordinates,
-    map: this.map,
-  });
-
-  constructor(private searchService: SearchService) { }
-
-  ngAfterViewInit() {
-
+  @ViewChild('mapContainer', { static: false }) mapNativeElement: ElementRef;
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionForm: FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.createDirectionForm();
   }
 
+  createDirectionForm() {
+    this.directionForm = this.fb.group({
+      source: ['Markham', Validators.required],
+      destination: ['Toronto', Validators.required]
+    });
+  }
 
+  ngAfterViewInit(): void {
+    const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
+      zoom: 7,
+      center: {lat: 41.85, lng: -87.65}
+    });
+    this.directionsDisplay.setMap(map);
+  }
 
-  mapInitializer() {
-    this.map = new google.maps.Map(this.gmap.nativeElement, this.mapOptions);
-    this.marker.setMap(this.map);
-
+  calculateAndDisplayRoute(formValues) {
+    const that = this;
+    this.directionsService.route({
+      origin: formValues.source,
+      destination: formValues.destination,
+      travelMode: google.maps.TravelMode.DRIVING
+    }, (response, status) => {
+      if (status === 'OK') {
+        that.directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
   }
 
 }
