@@ -11,11 +11,13 @@ export class HttpclientService {
 
 
   dashPost<T>(url: string, body: string): Observable<T> {
-    return this.http.post<T>(this.getUrl() + url, body);
+    const contentheaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<T>(this.getUrl() + url, body, { headers: contentheaders });
   }
 
   dashGet<T>(url: string): Observable<T> {
-    return this.http.get<T>(this.getUrl() + url);
+    const contentheaders = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.get<T>(this.getUrl() + url, { headers: contentheaders });
   }
 
 

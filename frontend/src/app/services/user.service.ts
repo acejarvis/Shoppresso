@@ -13,7 +13,12 @@ export class UserService {
     const body = {
       username: userName,
       password: password_
-    }
-    return this.http.dashPost<any>('user/login/', JSON.stringify(body));
+    };
+    return this.http.dashPost<any>('user/login/', '{"username": "user2","password": "123456"}');
   }
+
+  getCurrentUser(): Observable<any> {
+    return this.http.dashGet<any>('user/getCurrentUser/');
+  }
+
 }

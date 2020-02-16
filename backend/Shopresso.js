@@ -25,8 +25,8 @@ app.post('/user/login', function (req, res) {
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
    let verify = "not exist";
    for (let i = 0; i < db.users.length; i++) {
-      if (db.users[i].username == req.body.username || db.users[i].email == req.body.email) {
-         if (db.users[i].password == req.body.password) {
+      if (req.body.username == db.users[i].username || req.body.email == db.users[i].email) {
+         if (req.body.password == db.users[i].password) {
             verify = "Login Succeed"
             db.currentUser = db.users[i].username;
             break;
@@ -53,6 +53,7 @@ app.get('/user/logout', function (req, res) {
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
    db.currentUser = "JarvisIsGay"
    fs.writeFileSync("mongodb.json", JSON.stringify(db));
+   res.json("ok");
    res.end();
 })
 
@@ -68,7 +69,7 @@ app.get('/user/getCurrentUser', function (req, res) {
    if (db.currentUser == "JarvisIsGay")
       res.json("JarvisIsGay");
    else {
-      res.json(JSON.stringify(db.users.find(({ username }) => username === db.currentUser)))
+      res.json(db.users.find(({ username }) => username === db.currentUser));
    }
    res.end();
 })
@@ -204,7 +205,9 @@ app.post('/search', function (req, res) {
    pyProg.stdout.on('data', function (data) {
       res.write(data.toString());
       res.end();
+
    });
+   res.end();
 })
 
 app.post('/item', function (req, res) {
