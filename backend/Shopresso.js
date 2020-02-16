@@ -24,10 +24,9 @@ app.post('/user/login', function (req, res) {
    );
    let db = JSON.parse(fs.readFileSync("mongodb.json", "utf8"));
    let verify = "not exist";
-   console.log(req.body);
    for (let i = 0; i < db.users.length; i++) {
-      if (req.body.username == db.users[i].username  || req.body.email == db.users[i].email ) {
-         if (req.body.password == db.users[i].password ) {
+      if (req.body.username == db.users[i].username || req.body.email == db.users[i].email) {
+         if (req.body.password == db.users[i].password) {
             verify = "Login Succeed"
             db.currentUser = db.users[i].username;
             break;
