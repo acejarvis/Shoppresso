@@ -9,6 +9,24 @@
   <div class="map">
     <ion-button class="map_button" color="primary">Maps</ion-button>
   </div>
+
+  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+    <ion-reorder>
+      <ion-item>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Grocery items</ion-card-subtitle>
+            <ion-card-title>Cheese</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            - Cheese $5
+          </ion-card-content>
+        </ion-card>  
+      </ion-item>
+    </ion-reorder>
+  </ion-reorder-group>
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Grocery items</ion-card-subtitle>

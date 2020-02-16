@@ -5,7 +5,7 @@
 <ion-content [fullscreen]="true">
 
 
-  <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
+  <!-- <form [formGroup]="directionForm" (ngSubmit)="calculateAndDisplayRoute(directionForm.value)">
     <ion-item>
       <ion-label position="floating">Source</ion-label>
       <ion-input formControlName="source"></ion-input>
@@ -15,6 +15,6 @@
       <ion-input formControlName="destination"></ion-input>
     </ion-item>
     <ion-button expand="full" type="submit" [disabled]="directionForm.invalid">Get Direction</ion-button>
-  </form>
+  </form> -->
   <div #mapContainer id="map"></div>
 </ion-content>
