@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   isLogined = false;
   constructor(private userService: UserService, private router: Router) { }
-  username = 'lalala';
-  password = 'balabalassss';
+  username = 'user2';
+  password = '123456';
   ngOnInit() {
   }
   login() {
     this.isLogined = true;
     this.userService.login(this.username, this.password).subscribe(response => {
       console.log(response);
-      if (response.data === 'not exist') {
+      if (response === 'Login Succeed') {
         this.isLogined = false;
         this.router.navigateByUrl('');
       }
