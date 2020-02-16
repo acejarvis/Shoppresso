@@ -4,6 +4,7 @@ import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,22 +12,20 @@ import { UserService } from './services/user.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isLogin: false;
-  currentUser: string;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private menu: MenuController,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.initializeApp();
   }
 
+
   ngOnInit() {
-    this.userService.getCurrentUser().subscribe(response => {
-      console.log(response);
-    });
   }
 
   initializeApp() {
@@ -38,5 +37,17 @@ export class AppComponent implements OnInit {
 
   openMenu() {
     this.menu.open('menu');
+  }
+
+
+  logout() {
+    this.userService.logout().subscribe(response => {
+      if (response === 'ok') {
+        this.router.navigateByUrl('/login');
+        this.userService.getCurrentUser().subscribe(res => {
+          this.userService.currentUser = res.username;
+        });
+      }
+    });
   }
 }
