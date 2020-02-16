@@ -16,6 +16,7 @@ export class SearchService {
 {
     itemName: 'RTX 2080ti',
     store: 'Best Buy',
+    location: '695 Wilson Ave, Toronto, ON M3K 1E3',
     price: 1300,
     decription: 'gpu',
 },
@@ -29,6 +30,7 @@ export class SearchService {
 {
     itemName: 'G-Skill Ripjaws 16gb 3200mHz kit',
     store: 'Best Buy',
+    location: '695 Wilson Ave, Toronto, ON M3K 1E3',
     price: 72,
     description: 'memory',
 },
@@ -49,6 +51,7 @@ export class SearchService {
 {
     itemName: '256gb ssd',
     store: 'Best Buy',
+    location: '695 Wilson Ave, Toronto, ON M3K 1E3',
     price: 40,
     description: 'Storage',
 },
@@ -76,6 +79,7 @@ export class SearchService {
 {
     itemName: 'NZXT H500i',
     store: 'Canada Comptuters',
+    location: '695 Wilson Ave, Toronto, ON M3K 1E3',
     price: 100,
     description: 'computer case',
 }];
