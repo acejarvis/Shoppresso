@@ -17,4 +17,14 @@
     <ion-button expand="full" type="submit" [disabled]="directionForm.invalid">Get Direction</ion-button>
   </form> -->
   <div #mapContainer id="map"></div>
+  <ion-fab vertical="center" horizontal="start" slot="fixed">
+    <ion-fab-button href="navigationLink">
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="calculateAndDisplayRoute()">
+      <ion-icon name="arrow-forward-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

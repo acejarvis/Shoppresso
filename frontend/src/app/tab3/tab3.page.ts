@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { SearchService } from '../services/search.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { element } from 'protractor';
+import { HttpclientService } from '../services/httpclient.service';
 
 @Component({
   selector: 'app-tab3',
@@ -17,32 +18,11 @@ export class Tab3Page implements AfterViewInit {
 
   navigationLink: string;
   wayPointsLink = '';
+  locations = [];
+  constructor(private fb: FormBuilder, private searchService: SearchService, private http: HttpclientService) {
+this.locations = this.searchService.locations;
+console.log(this.searchService.locations);
 
-  locations = [
-    {
-      name: 'i7-8700k',
-      location: '20 Baffin Court, Richmond Hill, ON',
-      price: '$700'
-    },
-    {
-      name: 'i8-8800k',
-      location: '45 Red Maple Rd, Richmond Hill, ON L4B 4M6',
-      price: '$600'
-    },
-    {
-      name: 'i9-8900k',
-      location: '6364 Yonge St, North York, ON M2M 3X4',
-      price: '$670'
-    },
-    {
-      name: 'i10-81000k',
-      location: '1265 Military Trail, Scarborough, ON M1C 1A4',
-      price: '$89000'
-
-    }
-  ];
-  constructor(private fb: FormBuilder) {
-    // this.createDirectionForm();
   }
 
   // createDirectionForm() {
@@ -53,22 +33,25 @@ export class Tab3Page implements AfterViewInit {
   // }
 
   ngAfterViewInit(): void {
-
-    this.calculateAndDisplayRoute();
-
-  }
-
-  calculateAndDisplayRoute() {
     const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
       zoom: 7,
       center: { lat: 41.85, lng: -87.65 }
     });
     this.directionsDisplay.setMap(map);
+    if(this.searchService.isOK){
+      this.calculateAndDisplayRoute();
+
+    }
+
+  }
+
+  calculateAndDisplayRoute() {
+    
     const that = this;
     const wayPoints = [];
     console.log(this.locations);
     this.locations.forEach(item => {
-      wayPoints.push({ location: item.location });
+      wayPoints.push({ location: item.location.candidates[0].formatted_address});
     });
     wayPoints.splice(0, 1);
     wayPoints.splice(wayPoints.length - 1, 1);
@@ -77,8 +60,8 @@ export class Tab3Page implements AfterViewInit {
       // origin: formValues.source,
       // destination: formValues.destination,
 
-      origin: this.locations[0].location,
-      destination: this.locations[this.locations.length - 1].location,
+      origin: this.locations[0].location.candidates[0].formatted_address,
+      destination: this.locations[this.locations.length - 1].location.candidates[0].formatted_address,
       waypoints: wayPoints,
       travelMode: google.maps.TravelMode.DRIVING
     }, (response, status) => {
