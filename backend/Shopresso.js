@@ -203,13 +203,26 @@ app.post('/search', function (req, res) {
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
    );
+//linux only
+const { exec } = require('child_process');
+ exec('python3 prototying_web_crawler.py ' + req.query.q, (error, stdout, stderr) => {
+  console.log('python3 prototying_web_crawler.py ' + req.query.q); 
+ if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  res.write(stdout);
+  res.end();
+});
 
-   var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
-   pyProg.stdout.on('data', function (data) {
-      res.write(data.toString());
-      res.end();
 
-   });
+// //windows only
+   // var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
+   // pyProg.stdout.on('data', function (data) {
+      // res.write(data.toString());
+      // res.end();
+
+   // });
    
 })
 
