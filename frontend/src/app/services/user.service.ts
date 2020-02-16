@@ -13,6 +13,7 @@ export class UserService {
   currentUserEmail = 'JarvisIsGay';
   currentUserHome = 'JarvisIsGay';
   currentUserWork = 'JarvisIsGay';
+  currentLocation: any;
 
   login(userName: string, passw0rd: string): Observable<any> {
     const body = {
