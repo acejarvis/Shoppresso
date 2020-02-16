@@ -51,9 +51,7 @@ console.log(this.searchService.locations);
   }
 
   JumptoNavigation() {
-    console.log("hello moter fcker");
-    this.router.navigateByUrl("https://www.google.com/maps/dir/?api=1&origin=[object+Object]&destination=[object+Object]&travelmode=driving&waypoints=1306+Kennedy+Rd,+Scarborough,+ON+M1P+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C1306+Kennedy+Rd,+Scarborough,+ON+M1P+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C4038+Hwy+7,+Markham,+ON+L3R+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C1306+Kennedy+Rd,+Scarborough,+ON+M1P+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada");
-
+    window.open(this.navigationLink,'_blank')
   }
 
 
