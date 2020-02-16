@@ -34,7 +34,7 @@ export class HttpclientService {
 
 
   getUrl() {
-    const searchUrl = 'http://localhost:8081/';
+    const searchUrl = 'https://a681234.appspot.com/';
     return searchUrl;
   }
 }

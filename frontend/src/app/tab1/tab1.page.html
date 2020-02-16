@@ -5,12 +5,18 @@
         <ion-thumbnail>
           <img src="{{item.img}}">
         </ion-thumbnail>
+        <ion-col size="1"></ion-col>
         <ion-label>
           <h2>{{item.name}}</h2>
           <h3>{{item.store}}</h3>
           <h4>{{item.price}}</h4>
         </ion-label>
       </ion-item>
+      <ion-item-options>
+        <ion-item-option>
+          Add to shopping List
+        </ion-item-option>
+      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 </ion-content>
