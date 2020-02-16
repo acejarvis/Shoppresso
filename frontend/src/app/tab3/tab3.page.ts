@@ -45,6 +45,12 @@ console.log(this.searchService.locations);
 
   }
 
+  JumptoNavigation() {
+    console.log("hello moter fcker");
+
+  }
+
+
   calculateAndDisplayRoute() {
     
     const that = this;

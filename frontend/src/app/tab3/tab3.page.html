@@ -18,7 +18,7 @@
   </form> -->
   <div #mapContainer id="map"></div>
   <ion-fab vertical="center" horizontal="start" slot="fixed">
-    <ion-fab-button href="navigationLink">
+    <ion-fab-button [routerLink]="" (click)="JumptoNavigation()" >
       <ion-icon name="share"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -87,6 +87,18 @@ def parse_and_generate_json(message):
             m_link= "https://www.google.com" + m_link.find('a').get('href')
             #print(m_link)
 
+        if(m_oname is None):
+            m_oname=''
+        if(m_storename is None):
+            m_storename=''
+        if(m_price is None):
+            m_price=''
+        if(m_img is None):
+            m_img=''
+        if(m_link is None):
+            m_link=''
+
+        
         temp['name'] = m_oname
         temp['store'] = m_storename
         temp['price']= m_price
