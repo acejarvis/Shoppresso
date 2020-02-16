@@ -3,9 +3,13 @@ import { SearchService } from '../services/search.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { element } from 'protractor';
 import { HttpclientService } from '../services/httpclient.service';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
 
 
+=======
+import { UserService } from '../services/user.service';
+>>>>>>> cd5a73edcf0e158763d637b8c1be1455f02e0cf9
 
 @Component({
   selector: 'app-tab3',
@@ -24,9 +28,15 @@ export class Tab3Page implements AfterViewInit {
   navigationLink: string;
   wayPointsLink = '';
   locations = [];
+<<<<<<< HEAD
   constructor(private fb: FormBuilder, private searchService: SearchService, private router: Router, private http: HttpclientService) {
 this.locations = this.searchService.locations;
 console.log(this.searchService.locations);
+=======
+  constructor(private fb: FormBuilder, private searchService: SearchService, private userService: UserService, private http: HttpclientService) {
+    this.locations = this.searchService.locations;
+    console.log(this.searchService.locations);
+>>>>>>> cd5a73edcf0e158763d637b8c1be1455f02e0cf9
 
 
   }
@@ -44,9 +54,8 @@ console.log(this.searchService.locations);
       center: { lat: 41.85, lng: -87.65 }
     });
     this.directionsDisplay.setMap(map);
-    if(this.searchService.isOK){
+    if (this.searchService.isOK) {
       this.calculateAndDisplayRoute();
-
     }
 
   }
@@ -59,22 +68,21 @@ console.log(this.searchService.locations);
 
 
   calculateAndDisplayRoute() {
-    
+
     const that = this;
     const wayPoints = [];
-    console.log(this.locations);
-    this.locations.forEach(item => {
-      wayPoints.push({ location: item.location.candidates[0].formatted_address});
+    
+    this.searchService.locations.forEach(item => {
+      wayPoints.push({ location: item.location.candidates[0].formatted_address });
     });
-    wayPoints.splice(0, 1);
-    wayPoints.splice(wayPoints.length - 1, 1);
+
 
     this.directionsService.route({
       // origin: formValues.source,
       // destination: formValues.destination,
 
-      origin: this.locations[0].location.candidates[0].formatted_address,
-      destination: this.locations[this.locations.length - 1].location.candidates[0].formatted_address,
+      origin: this.searchService.locations[0].location.candidates[0].formatted_address,
+      destination: this.searchService.locations[this.locations.length - 1].location.candidates[0].formatted_address,
       waypoints: wayPoints,
       travelMode: google.maps.TravelMode.DRIVING
     }, (response, status) => {
@@ -89,9 +97,9 @@ console.log(this.searchService.locations);
       if (status === 'OK') {
         that.directionsDisplay.setDirections(response);
         this.navigationLink = 'https://www.google.com/maps/dir/?api=1&origin=' + this.locations[0].location +
-        '&destination=' + this.locations[this.locations.length - 1].location +
-        '&travelmode=driving' +
-        '&waypoints=' + this.wayPointsLink.replace(/\s/g, '+');
+          '&destination=' + this.locations[this.locations.length - 1].location +
+          '&travelmode=driving' +
+          '&waypoints=' + this.wayPointsLink.replace(/\s/g, '+');
         this.navigationLink = this.navigationLink.slice(0, -3).replace(/\s/g, '+');
         console.log(this.navigationLink);
 

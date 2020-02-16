@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { IonReorderGroup } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { Tab3Page } from '../tab3/tab3.page';
 
 
 @Component({
@@ -13,8 +15,9 @@ export class Tab2Page implements OnInit {
   shoppingList = [];
 
   @ViewChild(IonReorderGroup, { static: true }) reorderGroup: IonReorderGroup;
+  @ViewChild(Tab3Page, {static: false}) tab3: Tab3Page;
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private router: Router) {
   }
 
   ngOnInit() {
@@ -28,8 +31,10 @@ export class Tab2Page implements OnInit {
         this.searchService.locations.push({ location: response });
       });
     });
-    this.searchService.isOK = true;
     console.log(this.searchService.locations);
+    this.router.navigateByUrl('tabs/tabs/tab3');
+
+
   }
 
 
