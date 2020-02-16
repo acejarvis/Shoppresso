@@ -201,11 +201,12 @@ app.post('/search', function (req, res) {
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
    );
-   var pyProg = spapythonwn('python', ["./hello.py", req.query.q]);
+   var pyProg = spawn('python3', ['./prototying_web_crawler.py', req.query.q]);
    pyProg.stdout.on('data', function (data) {
-      console.log(data.toString());
+      res.write(data.toString());
+      res.end();
+
    });
-   res.end();
 })
 
 app.post('/item', function (req, res) {
