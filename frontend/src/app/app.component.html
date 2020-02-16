@@ -3,16 +3,20 @@
     <!--  our side menu  -->
     <ion-menu contentId="main" menu-id="sidePanel" swipe-gesture=true>
       <ion-header>
-        <ion-item lines="full" color="primary">
-          <ion-avatar slot="start">
-            <img src="https://ui-avatars.com/api/?name=+{{this.userService.currentUser}}">
-          </ion-avatar>
-          <ion-label>
-            <h1>{{this.userService.currentUser}}</h1>
-            <h3>{{this.userService.currentUserEmail}}</h3>
-            <h3></h3>
-          </ion-label>
-        </ion-item>
+        <ion-menu-toggle menu="sidePanel">
+
+          <ion-item lines="full" color="primary" [routerLink]="['user']">
+            <ion-avatar slot="start">
+              <img src="https://ui-avatars.com/api/?name=+{{this.userService.currentUser}}">
+            </ion-avatar>
+            <ion-label>
+              <h1>{{this.userService.currentUser}}</h1>
+              <h3>{{this.userService.currentUserEmail}}</h3>
+              <h3></h3>
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
       </ion-header>
       <ion-content>
         <ion-menu-toggle menu="sidePanel">
