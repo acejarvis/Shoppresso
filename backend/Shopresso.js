@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 // Login method, noGG bad suer bad password, notGG good user bad password, GG good user good password
 app.post('/user/login', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -45,7 +45,7 @@ app.post('/user/login', function (req, res) {
 // Logout method
 app.get('/user/logout', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -60,7 +60,7 @@ app.get('/user/logout', function (req, res) {
 // getCurrentUser info method
 app.get('/user/getCurrentUser', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -79,7 +79,7 @@ app.get('/user/getCurrentUser', function (req, res) {
 // Verify username not taken, noGG not taken, hadGG already taken.
 app.post('/user/verifyUsername', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -97,7 +97,7 @@ app.post('/user/verifyUsername', function (req, res) {
 // Verify email not taken, noGG not taken, hadGG already taken.
 app.post('/user/verifyEmail', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -115,7 +115,7 @@ app.post('/user/verifyEmail', function (req, res) {
 // Create new user
 app.post('/user/newUser', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -152,7 +152,7 @@ app.post('/user/newUser', function (req, res) {
 // Update current user address
 app.post('/user/changeAddress', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -173,7 +173,7 @@ app.post('/user/changeAddress', function (req, res) {
 // Delete user from db
 app.delete('/user/deleteUser', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -198,7 +198,7 @@ app.post('/search', function (req, res) {
 
 
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -228,7 +228,7 @@ app.post('/search', function (req, res) {
 
 app.post('/item', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -273,7 +273,7 @@ app.post('/item', function (req, res) {
 // Shopping List operations
 app.post('/shoppingList', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -337,7 +337,7 @@ app.post('/shoppingList', function (req, res) {
 // getShoppingList
 app.get('/shoppingList', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
-   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header("Access-Control-Allow-Methods", "GET,POST,DELETE, PUT");
    res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"

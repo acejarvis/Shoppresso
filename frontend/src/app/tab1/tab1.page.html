@@ -13,13 +13,14 @@
         </ion-label>
       </ion-item>
 
-      <ion-item-options>
-
-        <ion-input clear-input=true color="dark" placeholder="Displayed Name" [(ngModel)]="displayedName">
-        </ion-input>
-        <ion-item-option (click)="clickAdd()">
-          Add
-        </ion-item-option>
+      <ion-item-options side="end">
+        <ion-label>
+          <ion-input clear-input=true color="dark" placeholder="Displayed Name" [(ngModel)]="displayedName">
+          </ion-input>
+          <ion-item-option (click)="clickAdd(item.name,item.store,item.price,item.img)">
+            Add
+          </ion-item-option>
+        </ion-label>
 
       </ion-item-options>
     </ion-item-sliding>
