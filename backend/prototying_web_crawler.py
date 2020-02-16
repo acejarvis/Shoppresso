@@ -74,14 +74,9 @@ def parse_and_generate_json(message):
         temp['img'] = m_img
         temp['link'] = m_link
 
-<<<<<<< HEAD
+
     json_data = json.dumps(Outarry)
     return json_data
-=======
-        Outarry.append(temp)
-
-    return Outarry
->>>>>>> 7c220491c19d44cccd20a2fc8f820578148a3a9e
 
 
 if __name__ == '__main__':
