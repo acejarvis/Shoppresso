@@ -12,30 +12,19 @@
 
   <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
     <ion-reorder>
-      <ion-item>
+      <ion-item *ngFor="item of shopplingList">
 
         <ion-card>
           <ion-card-header>
-            <ion-card-subtitle>Grocery items</ion-card-subtitle>
-            <ion-card-title>Cheese</ion-card-title>
+            <ion-card-subtitle>{{item.itemName}}</ion-card-subtitle>
+            <ion-card-title>{{item.store}}</ion-card-title>
           </ion-card-header>
         
-          <ion-card-content>
-            - Cheese $5
-          </ion-card-content>
+          <ion-card-content>{{item.price}}</ion-card-content>
         </ion-card>  
       </ion-item>
     </ion-reorder>
   </ion-reorder-group>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Grocery items</ion-card-subtitle>
-      <ion-card-title>Cheese</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      - Cheese $5
-    </ion-card-content>
-  </ion-card>  
+ 
   
 </ion-content>
