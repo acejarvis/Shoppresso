@@ -352,7 +352,7 @@ app.get('/shoppingList', function (req, res) {
          if (db.shoppingLists[i].listId == list) {
             let itemList = db.shoppingLists.find(({ listId }) => listId === list).items;
             for (let i = 0; i < itemList.length; i++) {
-               shpLt.push(db.shoppingLists.find(({ itemId }) => itemId === itemList[i]))
+               shpLt.push(db.items.find(({ itemId }) => itemId.toString() === itemList[i]))
             }
             break;
          }
