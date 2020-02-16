@@ -45,6 +45,12 @@ export class Tab3Page implements AfterViewInit {
 
   }
 
+  JumptoNavigation() {
+    console.log("hello moter fcker");
+
+  }
+
+
   calculateAndDisplayRoute() {
 
     const that = this;

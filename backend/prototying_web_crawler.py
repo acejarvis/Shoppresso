@@ -51,11 +51,11 @@ def parse_and_generate_json(message):
     
     for link in soup.find_all("div",attrs={'xcR77'}):
         temp={}
-        m_storename=''
-        m_price=''
-        m_link=''
-        m_img=''
-        m_oname=''
+        m_storename=""
+        m_price=""
+        m_link=""
+        m_img=""
+        m_oname=""
         m_img=link.find('img')
         
         if(m_img is not None):
@@ -87,6 +87,18 @@ def parse_and_generate_json(message):
             m_link= "https://www.google.com" + m_link.find('a').get('href')
             #print(m_link)
 
+        if(m_oname is None):
+            m_oname=''
+        if(m_storename is None):
+            m_storename=''
+        if(m_price is None):
+            m_price=''
+        if(m_img is None):
+            m_img=''
+        if(m_link is None):
+            m_link=''
+
+        
         temp['name'] = m_oname
         temp['store'] = m_storename
         temp['price']= m_price
@@ -99,8 +111,8 @@ def parse_and_generate_json(message):
 ##        print('-----')
 
 
-    #json_data = json.dumps(Outarry)
-    return Outarry
+    json_data = json.dumps(Outarry)
+    return json_data
 
 
 def send_data_over_get(jsonobj,host):
