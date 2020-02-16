@@ -75,7 +75,14 @@ export class SearchService {
 
   locations = [];
   isOK = false;
+  searchResult;
   constructor(private http: HttpclientService) { }
+
+  search(query: string): Observable<any[]> {
+    const body = {
+    };
+    return this.http.dashPost<any[]>('search?q=' + query, JSON.stringify(body));
+  }
 
   searchItems(value: string): Observable<any[]> {
     const body = {

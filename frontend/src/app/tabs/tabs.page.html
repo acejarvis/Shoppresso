@@ -1,8 +1,15 @@
 <ion-item lines="none">
-  <ion-buttons slot="start">
-    <ion-menu-button color="dark" menu="sidePanel"></ion-menu-button>
+  <ion-buttons slot="start" size="large">
+    <ion-menu-toggle menu="sidePanel">
+      <ion-icon color="dark" name="menu"></ion-icon>
+    </ion-menu-toggle>
   </ion-buttons>
-  <ion-searchbar animated type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-searchbar animated type="text" debounce="500" placeholder="Search Products" [(ngModel)]="searchQuery">
+  </ion-searchbar>
+  <ion-buttons slot="end" size="large" (click)="search()">
+    <ion-icon color="dark" name="search"></ion-icon>
+  </ion-buttons>
 </ion-item>
 <ion-tabs>
 

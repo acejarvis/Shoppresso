@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class TabsPage implements OnInit {
 
   title = 'tab1';
-  constructor(private route: Router) {}
+  searchQuery;
+  constructor(private searchService: SearchService, private route: Router) { }
   ngOnInit() {
 
     switch (this.route.url.charAt(9)) {
@@ -18,6 +20,12 @@ export class TabsPage implements OnInit {
       case '2': this.title = 'Shopping List'; break;
       case '3': this.title = 'Search'; break;
     }
+  }
+
+  search() {
+    this.searchService.search(this.searchQuery).subscribe(res => {
+      this.searchService.searchResult = res;
+    });
   }
 
   updateTitle(name: string) {

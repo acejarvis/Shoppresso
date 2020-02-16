@@ -1,14 +1,16 @@
 <ion-content [fullscreen]="true">
-
-
-  <ion-list *ngIf="isItemAvailable">
-    <ion-item-sliding *ngFor="let item of items">
+  <ion-list *ngIf="this.searchService.searchResult">
+    <ion-item-sliding *ngFor="let item of this.searchService.searchResult">
       <ion-item>
-        <ion-card>
-          <ion-label>{{item.itemName}}</ion-label>
-          <ion-label>{{item.store}}</ion-label>
-
-        </ion-card>
+        <ion-thumbnail>
+          <img src="{{item.image}}">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{item.name}}</h2>
+          <h3>{{item.store}}</h3>
+          <h4>{{item.price}}</h4>
+          <h3>{{item.store}}</h3>
+        </ion-label>
       </ion-item>
     </ion-item-sliding>
   </ion-list>

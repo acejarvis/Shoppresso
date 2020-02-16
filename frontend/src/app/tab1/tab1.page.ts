@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -31,10 +32,8 @@ export class Tab1Page implements OnInit {
     }
   ];
 
-  itemList: any[];
-  isItemAvailable = false;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private route: Router) { }
 
   ngOnInit() {
     console.log('welcome!');
@@ -51,7 +50,6 @@ export class Tab1Page implements OnInit {
     const val = ev.target.value;
     // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
-      this.isItemAvailable = true;
       this.items = this.items.filter((item) => {
         return (item.itemName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
