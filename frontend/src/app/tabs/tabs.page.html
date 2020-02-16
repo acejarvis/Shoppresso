@@ -1,12 +1,9 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button (click)="openMenu()"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>{{title}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<ion-item lines="none">
+  <ion-buttons slot="start">
+    <ion-menu-button menu="sidePanel"></ion-menu-button>
+  </ion-buttons>
+  <ion-searchbar animated type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+</ion-item>
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">

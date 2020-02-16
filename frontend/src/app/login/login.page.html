@@ -5,8 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-input  color="primary" placeholder="Username" [(ngModel)]="username"></ion-input>
-  <ion-input type="password" color="primary" placeholder="Password"[(ngModel)]="password"></ion-input>
+  <ion-input color="primary" placeholder="Username" [(ngModel)]="username"></ion-input>
+  <ion-input type="password" color="primary" placeholder="Password" [(ngModel)]="password"></ion-input>
   <ion-button class="login" expand="block" (click)="login()">login</ion-button>
-  <ion-progress-bar type="indeterminate" *ngIf="isLogined"></ion-progress-bar>
 </ion-content>
