@@ -4,9 +4,9 @@
   <br>
   <ion-toolbar>
     <ion-buttons slot="start">
-<ion-button (click)="minusDay()"> 
-  <ion-icon name="arrow-back-circle"></ion-icon>
-</ion-button>
+      <ion-button (click)="minusDay()">
+        <ion-icon name="arrow-back-circle"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="plusDay()">
@@ -18,7 +18,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
- 
+
   <ion-list *ngIf="shoppingList">
     <ion-item-sliding *ngFor="let item of shoppingList">
       <ion-item>
@@ -38,12 +38,12 @@
   </ion-list>
 
 
-<ion-fab vertical="bottom" horizontal="center" slot="fixed">
-  <ion-fab-button (click)="generateMap()">
-    <ion-icon name="arrow-forward-circle"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="generateMap()">
+      <ion-icon name="arrow-forward-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
- 
-  
+
+
 </ion-content>

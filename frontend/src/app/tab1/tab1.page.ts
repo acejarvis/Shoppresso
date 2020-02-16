@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  expectedName;
+  displayedName;
 
   showBackdrop = false;
   constructor(private searchService: SearchService, private route: Router) { }
@@ -18,7 +18,7 @@ export class Tab1Page implements OnInit {
   }
 
   clickAdd(name: string, store: string, price: string, img: string) {
-    this.addItem(this.expectedName, name, store, price, img);
+    this.addItem(this.displayedName, name, store, price, img);
   }
 
   addItem(expectedName: string, name: string, store: string, price: string, img: string) {
