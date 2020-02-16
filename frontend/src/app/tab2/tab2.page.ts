@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { IonReorderGroup } from '@ionic/angular';
 
@@ -8,31 +8,33 @@ import { IonReorderGroup } from '@ionic/angular';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
 
-shoppingList = [];
+  shoppingList = [];
 
-@ViewChild(IonReorderGroup, {static: true}) reorderGroup: IonReorderGroup;
+  @ViewChild(IonReorderGroup, { static: true }) reorderGroup: IonReorderGroup;
 
   constructor(private searchService: SearchService) {
+  }
+
+  ngOnInit() {
     this.shoppingList = this.searchService.shoppingList;
   }
 
-
-
-  doReorder(ev: any) {
-    // The `from` and `to` properties contain the index of the item
-    // when the drag started and ended, respectively
-    console.log('Before complete', this.shoppingList);
-
-    // Finish the reorder and position the item in the DOM based on
-    // where the gesture ended. Update the items variable to the
-    // new order of items
-    this.shoppingList = ev.detail.complete(this.shoppingList);
-
-    // After complete is called the items will be in the new order
-    console.log('After complete', this.shoppingList);
+  generateMap() {
+    this.shoppingList.forEach(element => {
+      this.searchService.getNearStore(element.store).subscribe(response => {
+        console.log(response);
+        this.searchService.locations.push({ location: response });
+      });
+    });
+    this.searchService.isOK = true;
+    console.log(this.searchService.locations);
   }
+
+
+
+
 
 
 }

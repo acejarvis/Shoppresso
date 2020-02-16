@@ -4,27 +4,31 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+<br>
+<br>
 
 
-  <div class="map">
-    <ion-button class="map_button" color="primary">Maps</ion-button>
-  </div>
-
-  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
-    <ion-reorder>
-      <ion-item *ngFor="item of shopplingList">
-
+    
+  <ion-list ng-cloak>
+    <ion-item-sliding *ngFor="let item of shoppingList">
+      <ion-item>
         <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>{{item.itemName}}</ion-card-subtitle>
-            <ion-card-title>{{item.store}}</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>{{item.price}}</ion-card-content>
-        </ion-card>  
+          <ion-label>{{item.itemName}}</ion-label>
+          <ion-label>{{item.store}}</ion-label>
+          <ion-checkbox></ion-checkbox>
+        </ion-card>
       </ion-item>
-    </ion-reorder>
-  </ion-reorder-group>
+    </ion-item-sliding>
+
+  </ion-list>
+
+<ion-card>
+  <ion-button (click)="generateMap()">
+    <ion-icon name="logo-buffer"></ion-icon>
+    </ion-button>
+</ion-card>
+
+
  
   
 </ion-content>
