@@ -1,1 +1,67 @@
-{"users":[{"username":"Haoran Liu","password":"123456","email":"peterliu123422@gmail.com","address":[{"tag":"home","address":"JarvisIsGay"},{"tag":"work","address":"JarvisIsGay"}]},{"username":"Jarvis Wang","password":"123456","email":"acejarvis98@gmail.com","address":[{"tag":"home","address":"20 baffin ct, richmond hill"},{"tag":"work","address":"1280 Main St W, Hamilton"}]},{"username":"test0000","password":"test0000","email":"test0000@mcmaster.ca","address":[{"tag":"home","address":"1 oakmoor lane"},{"tag":"work","address":"amd,markham"}]}],"items":[],"shoppingLists":[],"currentId":0,"currentUser":"test0000"}
+{
+    "users": [
+        {
+            "username": "Haoran Liu",
+            "password": "123456",
+            "email": "peterliu123422@gmail.com",
+            "address": [
+                {
+                    "tag": "home",
+                    "address": "JarvisIsGay"
+                },
+                {
+                    "tag": "work",
+                    "address": "JarvisIsGay"
+                }
+            ]
+        },
+        {
+            "username": "Jarvis Wang",
+            "password": "123456",
+            "email": "acejarvis98@gmail.com",
+            "address": [
+                {
+                    "tag": "home",
+                    "address": "20 baffin ct, richmond hill"
+                },
+                {
+                    "tag": "work",
+                    "address": "1280 Main St W, Hamilton"
+                }
+            ]
+        },
+        {
+            "username": "test0000",
+            "password": "test0000",
+            "email": "test0000@mcmaster.ca",
+            "address": [
+                {
+                    "tag": "home",
+                    "address": "1 oakmoor lane"
+                },
+                {
+                    "tag": "work",
+                    "address": "amd,markham"
+                }
+            ]
+        }
+    ],
+    "items": [
+        {
+            "itemId": 0,
+            "displayedName": "i7-8700K",
+            "name": "cpsadfsfCC",
+            "store": "BestBuy",
+            "price": "$174.54",
+            "img": "https://ui-avatars.com/api/?name=John+Doe"
+        }
+    ],
+    "shoppingLists": [
+        {
+            "listId": "Sun Feb 16 2020",
+            "items": []
+        }
+    ],
+    "currentId": 0,
+    "currentUser": "Haoran Liu"
+}

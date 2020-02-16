@@ -245,6 +245,24 @@ app.post('/item', function (req, res) {
          "price": req.body.price,
          "img": req.body.img
       });
+
+      let list = new Date().toDateString();
+
+      let found = false;
+      for (let i = 0; i < db.shoppingLists.length; i++) {
+         if (db.shoppingLists[i].listId == list) {
+            db.shoppingLists.find(({ listId }) => listId === list).items.push(db.currentId.toString());
+            found = true;
+            break;
+         }
+      }
+      if (!found) {
+         db.shoppingLists.push({
+            "listId": list,
+            "items": [db.currentId.toString()]
+         });
+      }
+
       db.currentId += 1;
       fs.writeFileSync("mongodb.json", JSON.stringify(db));
       res.end();
@@ -253,7 +271,6 @@ app.post('/item', function (req, res) {
 })
 
 // Shopping List operations
-
 app.post('/shoppingList', function (req, res) {
    res.header("Access-Control-Allow-Origin", "*");
    res.header("Access-Control-Allow-Methods", "DELETE, PUT");
@@ -265,7 +282,7 @@ app.post('/shoppingList', function (req, res) {
 
    // Add item to shopping list
    if (req.query.cmd == "add") {
-      let list = Date.parse(req.body.date).toDateString();
+      let list = Date.parse(req.query.date).toDateString();
       let found = false;
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {
@@ -286,7 +303,7 @@ app.post('/shoppingList', function (req, res) {
 
    // clear shopping list
    if (req.query.cmd == "clear") {
-      let list = Date.parse(req.body.date).toDateString();
+      let list = Date.parse(req.query.date).toDateString();
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {
             db.shoppingLists.splice(i, 1);
@@ -299,7 +316,7 @@ app.post('/shoppingList', function (req, res) {
 
    // Delete item from shopping list
    if (req.query.cmd == "delete") {
-      let list = Date.parse(req.body.date).toDateString();
+      let list = Date.parse(req.query.date).toDateString();
       let found = false;
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {
@@ -329,7 +346,7 @@ app.get('/shoppingList', function (req, res) {
 
    // Get shopping list of a certain date
    if (req.query.cmd == "getShoppingList") {
-      let list = Date.parse(req.body.date).toDateString();
+      let list = Date.parse(req.query.date).toDateString();
       let shpLt = []
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {

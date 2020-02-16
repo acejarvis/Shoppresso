@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  expectedName;
+
   items = [
     {
       itemName: 'i7-8700k',
@@ -32,7 +34,7 @@ export class Tab1Page implements OnInit {
     }
   ];
 
-
+  showBackdrop = false;
   constructor(private searchService: SearchService, private route: Router) { }
 
   ngOnInit() {
@@ -55,6 +57,23 @@ export class Tab1Page implements OnInit {
       });
     }
 
+  }
+
+
+  clickCancel() {
+  }
+
+  clickAdd(name: string, store: string, price: string, img: string) {
+    this.addItem(name, this.expectedName, store, price, img);
+  }
+
+  addItem(name: string, expectedName: string, store: string, price: string, img: string) {
+    this.searchService.addItem(name, expectedName, store, price, img).subscribe(res => {
+    });
+  }
+  addItemtoList(name: string, expectedName: string, store: string, price: string, img: string) {
+    this.searchService.addItem(name, expectedName, store, price, img).subscribe(res => {
+    });
   }
 }
 

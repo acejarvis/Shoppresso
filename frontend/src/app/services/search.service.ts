@@ -84,6 +84,17 @@ export class SearchService {
     return this.http.dashPost<any[]>('search?q=' + query, JSON.stringify(body));
   }
 
+  addItem(Name: string, ExpectedName: string, Store: string, Price: string, Img: string): Observable<any[]> {
+    const body = {
+      name: Name,
+      expectedName: ExpectedName,
+      store: Store,
+      price: Price,
+      img: Img
+    };
+    return this.http.dashPost<any[]>('item?cmd=add', JSON.stringify(body));
+  }
+
   searchItems(value: string): Observable<any[]> {
     const body = {
       name: value
