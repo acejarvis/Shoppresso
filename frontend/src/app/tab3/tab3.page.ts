@@ -3,6 +3,9 @@ import { SearchService } from '../services/search.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { element } from 'protractor';
 import { HttpclientService } from '../services/httpclient.service';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-tab3',
@@ -10,6 +13,8 @@ import { HttpclientService } from '../services/httpclient.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page implements AfterViewInit {
+
+
 
   @ViewChild('mapContainer', { static: false }) mapNativeElement: ElementRef;
   directionsService = new google.maps.DirectionsService();
@@ -19,9 +24,10 @@ export class Tab3Page implements AfterViewInit {
   navigationLink: string;
   wayPointsLink = '';
   locations = [];
-  constructor(private fb: FormBuilder, private searchService: SearchService, private http: HttpclientService) {
+  constructor(private fb: FormBuilder, private searchService: SearchService, private router: Router, private http: HttpclientService) {
 this.locations = this.searchService.locations;
 console.log(this.searchService.locations);
+
 
   }
 
@@ -47,6 +53,7 @@ console.log(this.searchService.locations);
 
   JumptoNavigation() {
     console.log("hello moter fcker");
+    this.router.navigateByUrl("https://www.google.com/maps/dir/?api=1&origin=[object+Object]&destination=[object+Object]&travelmode=driving&waypoints=1306+Kennedy+Rd,+Scarborough,+ON+M1P+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C1306+Kennedy+Rd,+Scarborough,+ON+M1P+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C4038+Hwy+7,+Markham,+ON+L3R+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada%7C1306+Kennedy+Rd,+Scarborough,+ON+M1P+2L5,+Canada%7C480+Progress+Ave,+Scarborough,+ON+M1P+5J1,+Canada");
 
   }
 
