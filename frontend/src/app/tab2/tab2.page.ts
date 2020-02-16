@@ -3,6 +3,7 @@ import { SearchService } from '../services/search.service';
 import { IonReorderGroup } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Tab3Page } from '../tab3/tab3.page';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class Tab2Page implements OnInit {
   @ViewChild(IonReorderGroup, { static: true }) reorderGroup: IonReorderGroup;
   @ViewChild(Tab3Page, {static: false}) tab3: Tab3Page;
 
-  constructor(private searchService: SearchService, private router: Router) {
+  constructor(private searchService: SearchService, private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -30,6 +31,10 @@ export class Tab2Page implements OnInit {
         console.log(response);
         this.searchService.locations.push({ location: response });
       });
+    });
+    this.searchService.getNearStore('Your Location').subscribe(response => {
+      console.log(response);
+      this.userService.currentLocation = response;
     });
     console.log(this.searchService.locations);
     this.router.navigateByUrl('tabs/tabs/tab3');

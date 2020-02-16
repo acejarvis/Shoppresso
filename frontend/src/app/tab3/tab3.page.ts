@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { element } from 'protractor';
 import { HttpclientService } from '../services/httpclient.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 
 
@@ -24,9 +24,14 @@ export class Tab3Page implements AfterViewInit {
   navigationLink: string;
   wayPointsLink = '';
   locations = [];
-  constructor(private fb: FormBuilder, private searchService: SearchService, private router: Router, private http: HttpclientService) {
-this.locations = this.searchService.locations;
-console.log(this.searchService.locations);
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService,
+    private router: Router,
+    private userService: UserService,
+    private http: HttpclientService) {
+    this.locations = this.searchService.locations;
+    console.log(this.searchService.locations);
 
 
   }
@@ -51,7 +56,7 @@ console.log(this.searchService.locations);
   }
 
   JumptoNavigation() {
-    window.open(this.navigationLink,'_blank')
+    window.open(this.navigationLink, '_blank')
   }
 
 
@@ -59,17 +64,18 @@ console.log(this.searchService.locations);
 
     const that = this;
     const wayPoints = [];
-    
     this.searchService.locations.forEach(item => {
       wayPoints.push({ location: item.location.candidates[0].formatted_address });
     });
+
+
 
 
     this.directionsService.route({
       // origin: formValues.source,
       // destination: formValues.destination,
 
-      origin: this.searchService.locations[0].location.candidates[0].formatted_address,
+      origin: this.userService.currentLocation.candidates[0].formatted_address,
       destination: this.searchService.locations[this.locations.length - 1].location.candidates[0].formatted_address,
       waypoints: wayPoints,
       travelMode: google.maps.TravelMode.DRIVING
