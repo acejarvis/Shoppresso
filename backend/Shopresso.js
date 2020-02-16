@@ -195,14 +195,19 @@ app.delete('/user/deleteUser', function (req, res) {
 
 // search
 app.post('/search', function (req, res) {
-   const date=req.body.date
-   console.log(date)
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+   );
    var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
    pyProg.stdout.on('data', function (data) {
       res.write(data.toString());
       res.end();
 
    });
+   
 })
 
 app.post('/item', function (req, res) {
