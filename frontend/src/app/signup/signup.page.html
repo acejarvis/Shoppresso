@@ -7,43 +7,46 @@
 <ion-content fullscreen>
   <ion-list lines="full" class="ion-no-margin ion-no-padding">
     <ion-item>
-      <ion-label position="stacked" color="{{this.usernamePass?light:danger}}">Username<ion-text color="danger">*
+      <ion-label position="stacked" color="{{this.username?'dark':'danger'}}">Username<ion-text color="danger">*
         </ion-text>
       </ion-label>
       <ion-input required type="text" ionChange="handleNameValue()" [(ngModel)]="username"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Password<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" color="{{this.password?'dark':'danger'}}">Password<ion-text color="danger">*
+        </ion-text>
       </ion-label>
-      <ion-input required type="text" ionChange="handlePasswordValue()" [(ngModel)]="password"></ion-input>
+      <ion-input required type="text" [(ngModel)]="password"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked" color="{{this.emailPass?light:danger}}">Email<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" color="{{this.email?'dark':'danger'}}">Email<ion-text color="danger">*
+        </ion-text>
       </ion-label>
       <ion-input required type="email" ionChange="handleEmailValue()" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked" color="{{this.home!=''?light:danger}}">Home Address<ion-text color="danger">*
+      <ion-label position="stacked" color="{{this.home?'dark':'danger'}}">Home Address<ion-text color="danger">*
         </ion-text>
       </ion-label>
-      <ion-input required type="text" ionChange="handleHomeAddressValue()" [(ngModel)]="home"></ion-input>
+      <ion-input required type="text" [(ngModel)]="home"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked" color="{{this.work!=''?light:danger}}">Work Address<ion-text color="danger">*
+      <ion-label position="stacked" color="{{this.work?'dark':'danger'}}">Work Address<ion-text color="danger">*
         </ion-text>
       </ion-label>
-      <ion-input required type="text" ionChange="handleWorkAddressValue()" [(ngModel)]="work"></ion-input>
+      <ion-input required type="text" [(ngModel)]="work"></ion-input>
     </ion-item>
 
 
   </ion-list>
 
   <div class="ion-padding">
-    <ion-button expand="block" color="dark" disabled="{{(!this.emailPass)&&(!this.usernamePass)}}" type="submit"
-      class="ion-no-margin">Create account</ion-button>
+    <ion-button expand="block" color="dark"
+      disabled="{{(!this.email)||(!this.username)||(!this.password)||(!this.home)||(!this.work)}}"
+      (click)="createUser()" type="submit" class="ion-no-margin">Create account</ion-button>
   </div>
 </ion-content>

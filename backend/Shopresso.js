@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var cors = require("cors");
-var checkRateLimit = require("rate-limit")(process.env.CORSANYWHERE_RATELIMIT);
+var checkRateLimit = require("rate-limit");
 var cors_proxy = require("cors-anywhere");
 var app = express();
 var { spawn } = require("child_process");
@@ -127,7 +127,7 @@ app.post('/user/newUser', function (req, res) {
          verify = "Invalid"
    }
    if (verify == "Invalid")
-      res.send("Username/Email has been taken.");
+      res.json("Username/Email has been taken.");
    else {
       db.users.push({
          "username": req.body.username,
@@ -347,7 +347,6 @@ cors_proxy.createServer({
    originBlacklist: originBlacklist,
    originWhitelist: originWhitelist,
    requireHeader: [],
-   checkRateLimit: checkRateLimit,
    'rejectUnauthorized': false,
    'http.proxyStrictSSL': false,
    removeHeaders: [

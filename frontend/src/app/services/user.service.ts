@@ -56,4 +56,17 @@ export class UserService {
     return this.http.dashPost<any>('user/newUser/', JSON.stringify(body));
   }
 
+  changeHomeAddress(HomeAddress: string): Observable<any> {
+    const body = {
+      homeAddress: HomeAddress
+    };
+    return this.http.dashPost<any>('user/changeAddress?tag=home', JSON.stringify(body));
+  }
+  changeWorkAddress(WorkAddress: string): Observable<any> {
+    const body = {
+      workAddress: WorkAddress
+    };
+    return this.http.dashPost<any>('user/changeAddress?tag=work', JSON.stringify(body));
+  }
+
 }
