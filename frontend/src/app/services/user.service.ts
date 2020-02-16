@@ -30,4 +30,30 @@ export class UserService {
     return this.http.dashGet<any>('user/logout/');
   }
 
+  verifyUsername(userName: string): Observable<any> {
+    const body = {
+      username: userName
+    };
+    return this.http.dashPost<any>('user/verifyUsername/', JSON.stringify(body));
+  }
+
+
+  verifyEmail(Email: string): Observable<any> {
+    const body = {
+      email: Email
+    };
+    return this.http.dashPost<any>('user/verifyEmail/', JSON.stringify(body));
+  }
+
+  newUser(userName: string, passw0rd: string, Email: string, HomeAddress: string, WorkAddress: string): Observable<any> {
+    const body = {
+      username: userName,
+      password: passw0rd,
+      email: Email,
+      homeAddress: HomeAddress,
+      workAddress: WorkAddress
+    };
+    return this.http.dashPost<any>('user/newUser/', JSON.stringify(body));
+  }
+
 }

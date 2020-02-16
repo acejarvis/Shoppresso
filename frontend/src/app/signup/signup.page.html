@@ -1,9 +1,47 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Create Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <form onsubmit="processForm(event)">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Username<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" ionChange="handleNameValue()" [(ngModel)]="username"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label position="stacked">Password<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" ionChange="handlePasswordValue()" [(ngModel)]="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="email" ionChange="handleEmailValue()" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Home Address<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" ionChange="handleHomeAddressValue()" [(ngModel)]="home"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Work Address<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" ionChange="handleWorkAddressValue()" [(ngModel)]="work"></ion-input>
+      </ion-item>
+
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" color="dark" type="submit" class="ion-no-margin">Create account</ion-button>
+    </div>
+  </form>
 </ion-content>

@@ -3,7 +3,8 @@ var bodyParser = require('body-parser');
 var fs = require("fs");
 var cors = require("cors");
 var axios = require('axios');
-var crawlerEngineHost = "localhost";
+var checkRateLimit = require("rate-limit");
+var cors_proxy = require("cors-anywhere");
 var app = express();
 var { spawn } = require("child_process");
 
@@ -195,7 +196,7 @@ app.delete('/user/deleteUser', function (req, res) {
 
 // search
 app.post('/search', function (req, res) {
-   const date=req.body.date
+   const date = req.body.date
    console.log(date)
    var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
    pyProg.stdout.on('data', function (data) {
@@ -333,3 +334,38 @@ var server = app.listen(8081, "0.0.0.0", function () {
 
    console.log("Example app listening at http://%s:%s", host, port)
 })
+
+var originBlacklist = parseEnvList(process.env.CORSANYWHERE_BLACKLIST);
+var originWhitelist = parseEnvList(process.env.CORSANYWHERE_WHITELIST);
+function parseEnvList(env) {
+   if (!env) {
+      return [];
+   }
+   return env.split(',');
+}
+
+cors_proxy.createServer({
+   originBlacklist: originBlacklist,
+   originWhitelist: originWhitelist,
+   requireHeader: [],
+   checkRateLimit: checkRateLimit,
+   'rejectUnauthorized': false,
+   'http.proxyStrictSSL': false,
+   removeHeaders: [
+      'cookie',
+      'cookie2',
+      // Strip Heroku-specific headers
+      'x-heroku-queue-wait-time',
+      'x-heroku-queue-depth',
+      'x-heroku-dynos-in-use',
+      'x-request-start',
+   ],
+   redirectSameOrigin: true,
+   httpProxyOptions: {
+      // Do not add X-Forwarded-For, etc. headers, because Heroku already adds it.
+      xfwd: false,
+      secure: false,
+   },
+}).listen(8000, "0.0.0.0", function () {
+   console.log('Running CORS Anywhere on 0.0.0.0:' + 8000);
+});
