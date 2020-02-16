@@ -59,10 +59,6 @@ export class Tab1Page implements OnInit {
 
   }
 
-
-  clickCancel() {
-  }
-
   clickAdd(name: string, store: string, price: string, img: string) {
     this.addItem(name, this.expectedName, store, price, img);
   }
