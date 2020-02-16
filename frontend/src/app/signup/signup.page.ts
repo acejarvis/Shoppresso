@@ -20,32 +20,14 @@ export class SignupPage implements OnInit {
   ngOnInit() {
   }
 
-  handleNameValue() {
-    if (this.username === '') {
-      this.usernamePass = false;
-    } else {
-      this.userService.verifyUsername(this.username).subscribe(res => {
-        if (res === 'Invalid') {
-          this.usernamePass = false;
-        } else {
-          this.usernamePass = true;
-        }
-      });
-    }
-  }
+  createUser() {
+    this.userService.newUser(this.username, this.password, this.email, this.home, this.work).subscribe(res => {
+      if (res === 'Username/Email has been taken.') {
 
-  handleEmailValue() {
-    if (this.email === '') {
-      this.emailPass = false;
-    } else {
-      this.userService.verifyEmail(this.email).subscribe(res => {
-        if (res === 'Invalid') {
-          this.emailPass = false;
-        } else {
-          this.emailPass = true;
-        }
-      });
-    }
+      } else {
+        this.router.navigateByUrl('login');
+      }
+    });
   }
 
 

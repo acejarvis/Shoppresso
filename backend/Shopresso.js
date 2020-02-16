@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var cors = require("cors");
-var checkRateLimit = require("rate-limit")(process.env.CORSANYWHERE_RATELIMIT);
+var checkRateLimit = require("rate-limit");
 var cors_proxy = require("cors-anywhere");
 var app = express();
 var { spawn } = require("child_process");
@@ -127,7 +127,7 @@ app.post('/user/newUser', function (req, res) {
          verify = "Invalid"
    }
    if (verify == "Invalid")
-      res.send("Username/Email has been taken.");
+      res.json("Username/Email has been taken.");
    else {
       db.users.push({
          "username": req.body.username,
@@ -195,14 +195,35 @@ app.delete('/user/deleteUser', function (req, res) {
 
 // search
 app.post('/search', function (req, res) {
-   const date = req.body.date
-   console.log(date)
-   var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
-   pyProg.stdout.on('data', function (data) {
-      res.write(data.toString());
-      res.end();
+	
+	
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Methods", "DELETE, PUT");
+   res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+   );
+//linux only
+const { exec } = require('child_process');
+ exec('python3 prototying_web_crawler.py ' + req.query.q, (error, stdout, stderr) => {
+  console.log('python3 prototying_web_crawler.py ' + req.query.q); 
+ if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  res.write(stdout);
+  res.end();
+});
 
-   });
+
+// //windows only
+   // var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
+   // pyProg.stdout.on('data', function (data) {
+      // res.write(data.toString());
+      // res.end();
+
+   // });
+   
 })
 
 app.post('/item', function (req, res) {
@@ -347,7 +368,6 @@ cors_proxy.createServer({
    originBlacklist: originBlacklist,
    originWhitelist: originWhitelist,
    requireHeader: [],
-   checkRateLimit: checkRateLimit,
    'rejectUnauthorized': false,
    'http.proxyStrictSSL': false,
    removeHeaders: [
