@@ -99,8 +99,8 @@ def parse_and_generate_json(message):
 ##        print('-----')
 
 
-    json_data = json.dumps(Outarry)
-    return json_data
+    #json_data = json.dumps(Outarry)
+    return Outarry
 
 
 def send_data_over_get(jsonobj,host):

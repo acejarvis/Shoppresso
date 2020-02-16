@@ -207,7 +207,6 @@ app.post('/search', function (req, res) {
       res.end();
 
    });
-   res.end();
 })
 
 app.post('/item', function (req, res) {
