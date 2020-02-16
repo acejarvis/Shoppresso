@@ -25,7 +25,7 @@ export class SignupPage implements OnInit {
       if (res === 'Username/Email has been taken.') {
 
       } else {
-        this.router.navigateByUrl('login');
+        this.router.navigateByUrl('/');
       }
     });
   }

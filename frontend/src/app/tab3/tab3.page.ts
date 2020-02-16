@@ -3,13 +3,9 @@ import { SearchService } from '../services/search.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { element } from 'protractor';
 import { HttpclientService } from '../services/httpclient.service';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
 
 
-=======
-import { UserService } from '../services/user.service';
->>>>>>> cd5a73edcf0e158763d637b8c1be1455f02e0cf9
 
 @Component({
   selector: 'app-tab3',
@@ -28,15 +24,9 @@ export class Tab3Page implements AfterViewInit {
   navigationLink: string;
   wayPointsLink = '';
   locations = [];
-<<<<<<< HEAD
   constructor(private fb: FormBuilder, private searchService: SearchService, private router: Router, private http: HttpclientService) {
 this.locations = this.searchService.locations;
 console.log(this.searchService.locations);
-=======
-  constructor(private fb: FormBuilder, private searchService: SearchService, private userService: UserService, private http: HttpclientService) {
-    this.locations = this.searchService.locations;
-    console.log(this.searchService.locations);
->>>>>>> cd5a73edcf0e158763d637b8c1be1455f02e0cf9
 
 
   }
