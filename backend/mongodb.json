@@ -54,14 +54,43 @@
             "store": "BestBuy",
             "price": "$174.54",
             "img": "https://ui-avatars.com/api/?name=John+Doe"
+        },
+        {
+            "itemId": 1,
+            "displayedName": "i7-8700K",
+            "name": "cpsadfsfCC",
+            "store": "BestBuy",
+            "price": "$174.54",
+            "img": "https://ui-avatars.com/api/?name=John+Doe"
+        },
+        {
+            "itemId": 2,
+            "displayedName": "i7-8700K",
+            "name": "cpsadfsfCC",
+            "store": "BestBuy",
+            "price": "$174.54",
+            "img": "https://ui-avatars.com/api/?name=John+Doe"
+        },
+        {
+            "itemId": 3,
+            "displayedName": "i7-8700K",
+            "name": "cpsadfsfCC",
+            "store": "BestBuy",
+            "price": "$174.54",
+            "img": "https://ui-avatars.com/api/?name=John+Doe"
         }
     ],
     "shoppingLists": [
         {
             "listId": "Sun Feb 16 2020",
-            "items": []
+            "items": [
+                "0",
+                "1",
+                "2",
+                "3"
+            ]
         }
     ],
-    "currentId": 0,
+    "currentId": 4,
     "currentUser": "Haoran Liu"
 }

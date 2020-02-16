@@ -282,7 +282,7 @@ app.post('/shoppingList', function (req, res) {
 
    // Add item to shopping list
    if (req.query.cmd == "add") {
-      let list = Date.parse(req.query.date).toDateString();
+      let list = new Date(req.query.date).toDateString();
       let found = false;
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {
@@ -303,7 +303,7 @@ app.post('/shoppingList', function (req, res) {
 
    // clear shopping list
    if (req.query.cmd == "clear") {
-      let list = Date.parse(req.query.date).toDateString();
+      let list = new Date(req.query.date).toDateString();
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {
             db.shoppingLists.splice(i, 1);
@@ -316,7 +316,7 @@ app.post('/shoppingList', function (req, res) {
 
    // Delete item from shopping list
    if (req.query.cmd == "delete") {
-      let list = Date.parse(req.query.date).toDateString();
+      let list = new Date(req.query.date).toDateString();
       let found = false;
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {
