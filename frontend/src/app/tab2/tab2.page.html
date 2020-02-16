@@ -4,12 +4,12 @@
   <br>
   <ion-toolbar>
     <ion-buttons slot="start">
-<ion-button> 
+<ion-button (click)="minusDay()"> 
   <ion-icon name="arrow-back-circle"></ion-icon>
 </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="plusDay()">
         <ion-icon name="arrow-forward-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -27,7 +27,7 @@
         </ion-thumbnail>
         <ion-col size="1"></ion-col>
         <ion-label>
-          <h2>{{item.name}}</h2>
+          <h2>{{item.displayedName}}</h2>
           <h3>{{item.store}}</h3>
           <h4>{{item.price}}</h4>
         </ion-label>
@@ -37,12 +37,12 @@
 
   </ion-list>
 
-<ion-card>
-  <ion-button expand="block" color="dark" fill="clear" slot="end" size="large" class="ion-no-margin" (click)="generateMap()">
-    <ion-icon name="logo-buffer"></ion-icon>
-    </ion-button>
-</ion-card>
 
+<ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button (click)="generateMap()">
+    <ion-icon name="arrow-forward-circle"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 
  
   

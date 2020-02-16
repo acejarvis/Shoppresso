@@ -19,35 +19,56 @@ export class Tab2Page implements OnInit {
   selectedDateString = '';
 
   @ViewChild(IonReorderGroup, { static: true }) reorderGroup: IonReorderGroup;
-  @ViewChild(Tab3Page, {static: false}) tab3: Tab3Page;
+  @ViewChild(Tab3Page, { static: false }) tab3: Tab3Page;
 
   constructor(
-    private searchService: SearchService, 
-    private router: Router, 
+    private searchService: SearchService,
+    private router: Router,
     private userService: UserService,
     private datePipe: DatePipe
-    ) {
-    this.selectedDateString = this.datePipe.transform(this.selectedDate,'yyyy-MM-dd');
+  ) {
+    this.selectedDateString = this.datePipe.transform(this.selectedDate, 'yyyy-MM-dd');
   }
 
   ngOnInit() {
+    // this.shoppingList = this.searchService.shoppingList;
     this.shoppList(new Date());
   }
 
   shoppList(date: Date) {
     this.userService.getShoppingList(date).subscribe(response => {
+      response.forEach(element => {
+        element.isChecked = false;
+      });
       this.shoppingList = response;
-      console.log(this.shoppList);
+      console.log(response);
     });
   }
 
+  plusDay() {
+    this.selectedDate.setDate(this.selectedDate.getDate() + 1);
+    this.selectedDateString = this.datePipe.transform(this.selectedDate, 'yyyy-MM-dd');
+    this.shoppList(this.selectedDate);
+  }
+
+  minusDay() {
+    this.selectedDate.setDate(this.selectedDate.getDate() - 1);
+    this.selectedDateString = this.datePipe.transform(this.selectedDate, 'yyyy-MM-dd');
+    this.shoppList(this.selectedDate);
+  }
+
+
   generateMap() {
+    console.log(this.shoppingList);
     this.shoppingList.forEach(element => {
-      this.searchService.getNearStore(element.store).subscribe(response => {
-        console.log(response);
-        this.searchService.locations.push({ location: response });
-      });
+      if (element.isChecked) {
+        this.searchService.getNearStore(element.store).subscribe(response => {
+          console.log(response);
+          this.searchService.locations.push({ location: response });
+        });
+      }
     });
+
     this.searchService.getNearStore('Your Location').subscribe(response => {
       console.log(response);
       this.userService.currentLocation = response;
