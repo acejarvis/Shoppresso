@@ -243,7 +243,7 @@ app.post('/item', function (req, res) {
          "name": req.body.name,
          "store": req.body.store,
          "price": req.body.price,
-         "image": req.body.image
+         "img": req.body.img
       });
       db.currentId += 1;
       fs.writeFileSync("mongodb.json", JSON.stringify(db));
