@@ -10,9 +10,9 @@ import urllib.request
 
 uurl = 'https://www.google.ca/search?hl=en-CA&tbm=shop&q=gpu&tbs=vw:l,mr:1,merchagg:m123763737%7Cm119761588'
 uurl1 = 'https://www.google.ca/search?tbm=shop&q='
-uurl2 = '&tbs=vw:l,mr:1,merchagg:g7187155%7Cm117298448%7Cm119761588%7Cm8635309%7Cm123763737%m135353137%m10642575'
-uurl3_apparel = '%m9345150%7Cm128518690%7Cm102309770%7Cm9349630%7Cm136984915%7Cm12892061%7Cm8936877%7Cm119612963'
-uurl4_appliance = "%m146377748%7Cm146378129"
+uurl2 = '&tbs=vw:l,mr:1,merchagg:g7187155%7Cm117298448%7Cm119761588%7Cm123763737%7Cm135353137%7Cm10642575'
+uurl3_apparel = '%7Cm9345150%7Cm128518690%7Cm102309770%7Cm9349630%7Cm136984915%7Cm12892061%7Cm8936877%7Cm119612963'
+uurl4_appliance = "%7Cm146377748%7Cm146378129"
 ##def download(t_url):
 ##    response =  
 ##
