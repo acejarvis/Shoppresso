@@ -5,6 +5,8 @@ var cors = require("cors");
 var axios = require('axios');
 var crawlerEngineHost = "localhost";
 var app = express();
+var { spawn } = require("child_process");
+
 app.set("port", process.env.PORT || 9000);
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -198,14 +200,11 @@ app.post('/search', function (req, res) {
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
    );
-   axios.get("http://" + crawlerEngineHost + ":8000/search?q=" + req.query.q)
-      .then(response => {
-         res.send(JSON.stringify(response.data));
-         res.end();
-      })
-      .catch(error => {
-         console.log(error);
-      });
+   var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
+   pyProg.stdout.once('data', function (data) {
+      res.write(data.toString());
+      res.end();
+   });
 })
 
 app.post('/item', function (req, res) {

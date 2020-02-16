@@ -97,13 +97,12 @@ def parse_and_generate_json(message):
 ##        print('-----')
 
 
-    json_data = json.dumps(Outarry)
-    return json_data
+    return Outarry
 
 
 def send_data_over_get(jsonobj,host):
     if(requests.get(jsonobj,host)):
-        if(res):
+        if(response):
             print("sucessful")
 
         else:
