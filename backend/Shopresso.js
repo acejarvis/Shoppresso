@@ -201,7 +201,7 @@ app.post('/search', function (req, res) {
       "Origin, X-Requested-With, Content-Type, Accept"
    );
    var pyProg = spawn('python', ['./prototying_web_crawler.py', req.query.q]);
-   pyProg.stdout.once('data', function (data) {
+   pyProg.stdout.on('data', function (data) {
       res.write(data.toString());
       res.end();
    });

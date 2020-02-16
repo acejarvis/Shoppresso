@@ -96,8 +96,8 @@ def parse_and_generate_json(message):
 ##        print(g.text)
 ##        print('-----')
 
-
-    return Outarry
+    json_data = json.dumps(Outarry)
+    return json_data
 
 
 def send_data_over_get(jsonobj,host):
