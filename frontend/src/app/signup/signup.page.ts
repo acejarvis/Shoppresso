@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
 })
 export class SignupPage implements OnInit {
   username;
+  usernamePass = false;
   password;
   email;
+  emailPass = false;
   home;
   work;
   constructor(private userService: UserService, private router: Router) { }
@@ -19,11 +21,31 @@ export class SignupPage implements OnInit {
   }
 
   handleNameValue() {
-    this.userService.verifyUsername(this.username).subscribe(res => {
-      if (res === "Invalid") {
+    if (this.username === '') {
+      this.usernamePass = false;
+    } else {
+      this.userService.verifyUsername(this.username).subscribe(res => {
+        if (res === 'Invalid') {
+          this.usernamePass = false;
+        } else {
+          this.usernamePass = true;
+        }
+      });
+    }
+  }
 
-      }
-    });
+  handleEmailValue() {
+    if (this.email === '') {
+      this.emailPass = false;
+    } else {
+      this.userService.verifyEmail(this.email).subscribe(res => {
+        if (res === 'Invalid') {
+          this.emailPass = false;
+        } else {
+          this.emailPass = true;
+        }
+      });
+    }
   }
 
 
