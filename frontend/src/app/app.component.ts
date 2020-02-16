@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.userService.logout().subscribe(response => {
       if (response === 'ok') {
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/');
         this.userService.getCurrentUser().subscribe(res => {
           this.userService.currentUser = res.username;
         });

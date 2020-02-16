@@ -21,7 +21,7 @@ export class UserPage implements OnInit {
   saveAddress() {
     this.userService.changeHomeAddress(this.home).subscribe(res => { });
     this.userService.changeWorkAddress(this.work).subscribe(res => { });
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('tabs/tabs/tab1');
   }
 
 }
