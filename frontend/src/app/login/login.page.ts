@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   login() {
     this.userService.login(this.username, this.password).subscribe(response => {
       if (response === 'Login Succeed') {
-        this.router.navigateByUrl('');
+        this.router.navigateByUrl('tabs/tabs/tab1');
         this.userService.getCurrentUser().subscribe(res => {
           this.userService.currentUser = res.username;
           this.userService.currentUserEmail = res.email;
