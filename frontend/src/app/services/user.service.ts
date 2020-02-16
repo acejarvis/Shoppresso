@@ -38,6 +38,17 @@ export class UserService {
     return this.http.dashPost<any>('user/verifyUsername/', JSON.stringify(body));
   }
 
+  getShoppingList(date: Date): Observable<any> {
+    const dateString = date.toUTCString();
+    return this.http.dashGet<any[]>('shoppinglist?cmd=getShoppingList&date=' + dateString);
+  }
+
+  search(query: string): Observable<any[]> {
+    const body = {
+    };
+    return this.http.dashPost<any[]>('search?q=' + query, JSON.stringify(body));
+  }
+
 
   verifyEmail(Email: string): Observable<any> {
     const body = {

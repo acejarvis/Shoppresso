@@ -346,7 +346,7 @@ app.get('/shoppingList', function (req, res) {
 
    // Get shopping list of a certain date
    if (req.query.cmd == "getShoppingList") {
-      let list = Date.parse(req.query.date).toDateString();
+      let list = new Date(req.query.date).toDateString();
       let shpLt = []
       for (let i = 0; i < db.shoppingLists.length; i++) {
          if (db.shoppingLists[i].listId == list) {

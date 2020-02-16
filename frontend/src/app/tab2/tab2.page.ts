@@ -4,6 +4,7 @@ import { IonReorderGroup } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Tab3Page } from '../tab3/tab3.page';
 import { UserService } from '../services/user.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -14,15 +15,30 @@ import { UserService } from '../services/user.service';
 export class Tab2Page implements OnInit {
 
   shoppingList = [];
+  selectedDate = new Date();
+  selectedDateString = '';
 
   @ViewChild(IonReorderGroup, { static: true }) reorderGroup: IonReorderGroup;
   @ViewChild(Tab3Page, {static: false}) tab3: Tab3Page;
 
-  constructor(private searchService: SearchService, private router: Router, private userService: UserService) {
+  constructor(
+    private searchService: SearchService, 
+    private router: Router, 
+    private userService: UserService,
+    private datePipe: DatePipe
+    ) {
+    this.selectedDateString = this.datePipe.transform(this.selectedDate,'yyyy-MM-dd');
   }
 
   ngOnInit() {
-    this.shoppingList = this.searchService.shoppingList;
+    this.shoppList(new Date());
+  }
+
+  shoppList(date: Date) {
+    this.userService.getShoppingList(date).subscribe(response => {
+      this.shoppingList = response;
+      console.log(this.shoppList);
+    });
   }
 
   generateMap() {
