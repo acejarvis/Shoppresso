@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class UserPage implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router) { }
   home = this.userService.currentUserHome;
   work = this.userService.currentUserWork;
   editHome = false;

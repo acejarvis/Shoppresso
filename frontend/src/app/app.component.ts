@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private menu: MenuController,
-    private userService: UserService,
+    public userService: UserService,
     private router: Router
   ) {
     this.initializeApp();

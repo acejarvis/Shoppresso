@@ -11,7 +11,7 @@ export class Tab1Page implements OnInit {
   displayedName;
 
   showBackdrop = false;
-  constructor(private searchService: SearchService, private route: Router) { }
+  constructor(public searchService: SearchService, private route: Router) { }
 
   ngOnInit() {
     console.log('welcome!');
